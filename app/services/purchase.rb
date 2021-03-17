@@ -6,7 +6,7 @@ class Purchase
   end
 
   def params
-    @params ||= input_params.slice(*permitted_params)
+    @params ||= ActionController::Parameters.new(input_params).permit(*permitted_params)
   end
 
   def permitted_params
