@@ -4,6 +4,7 @@ describe Purchase::Shipping do
   let(:payload) do
     {
       shipping: {
+        date_created: date_created,
         receiver_address: {
           country: { id: country_id },
           state: { name: state_name },
@@ -13,7 +14,6 @@ describe Purchase::Shipping do
           comment: comment,
           latitude: latitude,
           longitude: longitude,
-          date_created: date_created,
           zip_code: zip_code,
           street_number: street_number
         }
@@ -36,7 +36,7 @@ describe Purchase::Shipping do
 
     it 'translate them accordingly' do
       expect(subject[:country]).to eq('BR')
-      expect(subject[:state]).to eq('São Paulo') # nao tem a sigla no payload de entrada
+      expect(subject[:state]).to eq('São Paulo')
       expect(subject[:city]).to eq('Cidade de Testes')
       expect(subject[:district]).to eq('Vila de Testes')
       expect(subject[:street]).to eq('Rua Fake de Testes')

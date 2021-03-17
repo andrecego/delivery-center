@@ -7,10 +7,10 @@ class Purchase::Shipping < Purchase
   private
 
   def permitted_params
-    receiver_permitted = %i[street_name comment latitude longitude date_created zip_code street_number]
+    receiver_permitted = %i[street_name comment latitude longitude zip_code street_number]
     nested_permitted = { country: :id, state: :name, city: :name, neighborhood: :name }
 
-    [shipping: { receiver_address: [*receiver_permitted, nested_permitted] }]
+    [shipping: [:date_created, { receiver_address: [*receiver_permitted, nested_permitted] }]]
   end
 
   def shipping
@@ -54,7 +54,7 @@ class Purchase::Shipping < Purchase
   end
 
   def dt_order_create
-    date_created = DateTime.parse(receiver_address[:date_created])
+    date_created = DateTime.parse(shipping[:date_created])
     iso8601_format = '%FT%T.%LZ'
     { dtOrderCreate: date_created.strftime(iso8601_format) }
   end
