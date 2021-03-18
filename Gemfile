@@ -10,7 +10,10 @@ gem 'rails', '~> 6.1.3'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'factory_bot_rails'
+  gem 'pry-byebug'
   gem 'rspec-rails', '~> 4.1.0'
+  gem 'shoulda-matchers', '~> 4.0'
 end
 
 group :development do
