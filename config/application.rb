@@ -22,6 +22,7 @@ Bundler.require(*Rails.groups)
 module DeliveryCenter
   class Application < Rails::Application
     config.load_defaults 6.1
+    config.autoloader = :classic
     config.api_only = true
     config.time_zone = 'America/Sao_Paulo'
   end
