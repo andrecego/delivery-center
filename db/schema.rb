@@ -45,10 +45,12 @@ ActiveRecord::Schema.define(version: 2021_03_18_140350) do
     t.decimal "shipping_cost", precision: 8, scale: 2
     t.decimal "total", precision: 8, scale: 2
     t.bigint "customer_id", null: false
+    t.bigint "shipping_address_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["external_code"], name: "index_orders_on_external_code", unique: true
+    t.index ["shipping_address_id"], name: "index_orders_on_shipping_address_id"
   end
 
   create_table "payments", force: :cascade do |t|
@@ -78,6 +80,7 @@ ActiveRecord::Schema.define(version: 2021_03_18_140350) do
   end
 
   add_foreign_key "orders", "customers"
+  add_foreign_key "orders", "shipping_addresses"
   add_foreign_key "payments", "orders"
   add_foreign_key "shipping_addresses", "customers"
 end

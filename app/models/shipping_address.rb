@@ -5,4 +5,5 @@ class ShippingAddress < ApplicationRecord
   validates :longitude, inclusion: -180..180
 
   belongs_to :customer
+  has_many :orders, dependent: :destroy
 end

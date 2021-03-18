@@ -7,5 +7,10 @@ FactoryBot.define do
     total                    { 50.55 }
     date_created             { Time.zone.now }
     customer
+    shipping_address
+
+    factory :order_with_payment do
+      payments { [association(:payment)] }
+    end
   end
 end

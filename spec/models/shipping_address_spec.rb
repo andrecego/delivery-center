@@ -16,5 +16,6 @@ describe ShippingAddress, type: :model do
     it { should validate_inclusion_of(:latitude).in_range(-90..90) }
     it { should validate_inclusion_of(:longitude).in_range(-180..180) }
     it { should belong_to(:customer) }
+    it { should have_many(:orders) }
   end
 end
