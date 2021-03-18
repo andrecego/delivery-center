@@ -9,5 +9,6 @@ describe Customer, type: :model do
 
     it { should validate_uniqueness_of(:external_code).case_insensitive }
     it { should validate_uniqueness_of(:email).case_insensitive }
+    it { should have_many(:shipping_addresses) }
   end
 end
