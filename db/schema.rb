@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2021_03_18_140350) do
     t.decimal "shipping_cost", precision: 8, scale: 2
     t.decimal "total", precision: 8, scale: 2
     t.bigint "customer_id", null: false
+    t.datetime "date_created"
     t.bigint "shipping_address_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
