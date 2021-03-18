@@ -14,6 +14,11 @@ describe CreateOrder do
     it 'should return order created' do
       expect(subject.last[:text]).to eq('order created')
     end
+
+    it 'created an order' do
+      subject
+      expect(Order.all.count).to eq(1)
+    end
   end
 
   context 'when the validator is invalid' do

@@ -18,7 +18,7 @@ class CreateOrder
   end
 
   def processed_params
-    Purchase::Processor.new(params).call
+    @processed_params ||= Purchase::Processor.new(params).call
   end
 
   def bad_request
