@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_18_125357) do
+ActiveRecord::Schema.define(version: 2021_03_18_133424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -38,6 +38,19 @@ ActiveRecord::Schema.define(version: 2021_03_18_125357) do
     t.index ["external_code"], name: "index_items_on_external_code", unique: true
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.citext "external_code", null: false
+    t.integer "store_id"
+    t.decimal "subtotal", precision: 8, scale: 2
+    t.decimal "shipping_cost", precision: 8, scale: 2
+    t.decimal "total", precision: 8, scale: 2
+    t.bigint "customer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
+    t.index ["external_code"], name: "index_orders_on_external_code", unique: true
+  end
+
   create_table "shipping_addresses", force: :cascade do |t|
     t.string "country"
     t.string "state"
@@ -55,5 +68,6 @@ ActiveRecord::Schema.define(version: 2021_03_18_125357) do
     t.index ["customer_id"], name: "index_shipping_addresses_on_customer_id"
   end
 
+  add_foreign_key "orders", "customers"
   add_foreign_key "shipping_addresses", "customers"
 end

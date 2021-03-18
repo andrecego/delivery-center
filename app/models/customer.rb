@@ -4,4 +4,5 @@ class Customer < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   has_many :shipping_addresses, dependent: :destroy
+  has_many :orders, dependent: :destroy
 end
