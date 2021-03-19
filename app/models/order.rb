@@ -8,6 +8,8 @@ class Order < ApplicationRecord
   belongs_to :customer
   belongs_to :shipping_address
   has_many :payments, dependent: :destroy
+  has_many :order_items
+  has_many :items, through: :order_items
 
   def total_sum
     return if total.blank? || subtotal.blank? || shipping_cost.blank?

@@ -17,6 +17,7 @@ describe Order, type: :model do
     it { should belong_to(:customer) }
     it { should belong_to(:shipping_address) }
     it { should have_many(:payments) }
+    it { should have_many(:items) }
 
     describe '.total_sum' do
       let(:payments) { build_list(:payment, 1, value: total) }
